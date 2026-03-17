@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Bills</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+<body>
+<div class="page">
+
+    <div class="topbar">
+        <div>
+            <h1>Bill Reminder Center</h1>
+            <p class="subtitle">Track recurring bills and upcoming due dates</p>
+        </div>
+
+        <div class="nav-links">
+            <a href="/" class="nav-btn">Dashboard</a>
+            <a href="/expenses" class="nav-btn">Expenses</a>
+            <a href="/bills" class="nav-btn">Bills</a>
+            <a href="/report" class="nav-btn dark-btn">Download Report</a>
+        </div>
+    </div>
+
+    <div class="grid">
+        <div class="card form-card">
+            <h2>Add Bill</h2>
+
+            <form th:action="@{/bills/add}" th:object="${bill}" method="post">
+                <div class="form-group">
+                    <label>Bill Title</label>
+                    <input type="text" th:field="*{title}" placeholder="Electricity Bill" required>
+                </div>
+
+                
+
+                <div class="form-group">
+                    <label>Amount</label>
+                    <input type="number" step="0.01" th:field="*{amount}" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Bill Date</label>
+                    <input type="date" th:field="*{date}" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Due Date</label>
+                    <input type="date" th:field="*{dueDate}" required>
+                </div>
+
+                <button type="submit" class="btn primary-btn">Save Bill</button>
+            </form>
+        </div>
+
+        <div class="right-panel">
+            <div class="card reminder-card">
+                <h2>Upcoming Reminders</h2>
+
+                <div th:if="${#lists.isEmpty(upcomingBills)}" class="empty-reminder">
+                    No upcoming bills right now.
+                </div>
+
+                <div class="reminder-list" th:if="${!#lists.isEmpty(upcomingBills)}">
+                    <div class="reminder-item" th:each="billItem : ${upcomingBills}">
+                        <div>
+                            <strong th:text="${billItem.title}">Bill title</strong>
+                            <p>
+                                Due: <span th:text="${billItem.dueDate}"></span>
+                                | Amount: ₹ <span th:text="${billItem.amount}"></span>
+                            </p>
+                        </div>
+                        <span class="reminder-badge">Due Soon</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card table-card">
+                <h2>All Bills</h2>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Amount</th>
+                            <th>Bill Date</th>
+                            <th>Due Date</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:if="${#lists.isEmpty(bills)}">
+                            <td colspan="5" class="empty-cell">No bills added yet</td>
+                        </tr>
+                        <tr th:each="b : ${bills}">
+                            <td th:text="${b.title}"></td>
+                            <td th:text="${b.amount}"></td>
+                            <td th:text="${b.date}"></td>
+                            <td th:text="${b.dueDate}"></td>
+                            <td>
+                                <a th:href="@{/delete/{id}(id=${b.id})}" class="delete-btn">Delete</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

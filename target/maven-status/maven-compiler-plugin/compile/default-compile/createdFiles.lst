@@ -1,0 +1,7 @@
+com\example\expense\PDFService.class
+com\example\expense\ExpenseRepository.class
+com\example\expense\ExpenseController.class
+com\example\expense\AIInsightService.class
+com\example\expense\Expense.class
+com\example\expense\ExpenseApplication.class
+com\example\expense\InsightCard.class

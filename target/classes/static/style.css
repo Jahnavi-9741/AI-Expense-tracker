@@ -1,0 +1,265 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #eef2ff, #f8fafc);
+    color: #1f2937;
+}
+
+.page {
+    max-width: 1350px;
+    margin: 0 auto;
+    padding: 30px 20px;
+}
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.topbar h1 {
+    font-size: 34px;
+    color: #111827;
+}
+
+.subtitle {
+    color: #6b7280;
+    margin-top: 6px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    gap: 24px;
+}
+
+.right-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.92);
+    border-radius: 22px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    padding: 24px;
+}
+
+.form-card h2,
+.table-card h2,
+.reminder-card h2 {
+    margin-bottom: 18px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 14px;
+}
+
+.form-group label {
+    margin-bottom: 7px;
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group select {
+    padding: 12px 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 12px;
+    font-size: 14px;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #6366f1;
+}
+
+.btn {
+    display: inline-block;
+    text-decoration: none;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.primary-btn {
+    width: 100%;
+    background: linear-gradient(90deg, #4f46e5, #7c3aed);
+    color: white;
+}
+
+.dark-btn {
+    background: #111827;
+    color: white;
+}
+
+.main-summary h2 {
+    color: #6b7280;
+    margin-bottom: 8px;
+}
+
+.main-summary h3 {
+    font-size: 34px;
+    margin-bottom: 10px;
+    color: #111827;
+}
+
+.main-summary p {
+    color: #374151;
+    line-height: 1.6;
+}
+
+.insight-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+}
+
+.insight-card {
+    border-radius: 20px;
+    padding: 20px;
+    color: white;
+    min-height: 160px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+}
+
+.insight-card h4 {
+    font-size: 16px;
+    margin-bottom: 12px;
+}
+
+.card-value {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.insight-card p {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.blue-card {
+    background: linear-gradient(135deg, #2563eb, #06b6d4);
+}
+
+.purple-card {
+    background: linear-gradient(135deg, #7c3aed, #4f46e5);
+}
+
+.orange-card {
+    background: linear-gradient(135deg, #f97316, #f59e0b);
+}
+
+.red-card {
+    background: linear-gradient(135deg, #ef4444, #f43f5e);
+}
+
+.reminder-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.reminder-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    background: #fff7ed;
+    border-left: 6px solid #f97316;
+    border-radius: 14px;
+}
+
+.reminder-item p {
+    margin-top: 6px;
+    color: #6b7280;
+}
+
+.reminder-badge {
+    background: #ef4444;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.empty-reminder {
+    color: #6b7280;
+}
+
+.table-wrap {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background: #f3f4f6;
+}
+
+th, td {
+    padding: 14px 12px;
+    text-align: left;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.delete-btn {
+    color: #dc2626;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.empty-cell {
+    text-align: center;
+    color: #6b7280;
+    padding: 20px;
+}
+
+@media (max-width: 1100px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .insight-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 700px) {
+    .insight-grid {
+        grid-template-columns: 1fr;
+    }
+}
+.nav-links {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.nav-btn {
+    text-decoration: none;
+    background: white;
+    color: #111827;
+    padding: 10px 16px;
+    border-radius: 12px;
+    font-weight: 600;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+}

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+<body>
+<div class="page">
+
+    <div class="topbar">
+        <div>
+            <h1>FinSight AI</h1>
+            <p class="subtitle">Smart personal finance dashboard</p>
+        </div>
+
+        <div class="nav-links">
+            <a href="/" class="nav-btn">Dashboard</a>
+            <a href="/expenses" class="nav-btn">Expenses</a>
+            <a href="/bills" class="nav-btn">Bills</a>
+            <a href="/report" class="nav-btn dark-btn">Download Report</a>
+        </div>
+    </div>
+
+    <div class="main-summary card">
+        <h2>Total Expense Overview</h2>
+        <h3>₹ <span th:text="${total}">0</span></h3>
+        <p th:text="${insight}">AI summary appears here</p>
+    </div>
+
+    <div class="insight-grid">
+        <div class="insight-card" th:each="card : ${insightCards}" th:classappend="${card.colorClass}">
+            <h4 th:text="${card.title}">Card Title</h4>
+            <div class="card-value" th:text="${card.value}">0</div>
+            <p th:text="${card.message}">Message</p>
+        </div>
+    </div>
+
+    <div class="card table-card">
+        <h2>Recent Expenses</h2>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Category</th>
+                    <th>Amount</th>
+                    <th>Date</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:if="${#lists.isEmpty(expenses)}">
+                    <td colspan="4" class="empty-cell">No expenses added yet</td>
+                </tr>
+                <tr th:each="e : ${expenses}">
+                    <td th:text="${e.title}"></td>
+                    <td th:text="${e.category}"></td>
+                    <td th:text="${e.amount}"></td>
+                    <td th:text="${e.date}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

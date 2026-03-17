@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Expenses</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+<body>
+<div class="page">
+
+    <div class="topbar">
+        <div>
+            <h1>Expense Tracker</h1>
+            <p class="subtitle">Manage your daily and monthly spending</p>
+        </div>
+
+        <div class="nav-links">
+            <a href="/" class="nav-btn">Dashboard</a>
+            <a href="/expenses" class="nav-btn">Expenses</a>
+            <a href="/bills" class="nav-btn">Bills</a>
+            <a href="/report" class="nav-btn dark-btn">Download Report</a>
+        </div>
+    </div>
+
+    <div class="grid">
+        <div class="card form-card">
+            <h2>Add Expense</h2>
+
+            <form th:action="@{/expenses/add}" th:object="${expense}" method="post">
+                <div class="form-group">
+                    <label>Title</label>
+                    <input type="text" th:field="*{title}" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Category</label>
+                    <select th:field="*{category}" required>
+                        <option value="">Choose category</option>
+                        <option value="Food">Food</option>
+                        <option value="Travel">Travel</option>
+                        <option value="Shopping">Shopping</option>
+                        <option value="Bills">Bills</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Amount</label>
+                    <input type="number" step="0.01" th:field="*{amount}" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Date</label>
+                    <input type="date" th:field="*{date}" required>
+                </div>
+
+                <button type="submit" class="btn primary-btn">Save Expense</button>
+            </form>
+        </div>
+
+        <div class="card table-card">
+            <h2>All Expenses</h2>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Category</th>
+                        <th>Amount</th>
+                        <th>Date</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:if="${#lists.isEmpty(expenses)}">
+                        <td colspan="5" class="empty-cell">No expenses added yet</td>
+                    </tr>
+                    <tr th:each="e : ${expenses}">
+                        <td th:text="${e.title}"></td>
+                        <td th:text="${e.category}"></td>
+                        <td th:text="${e.amount}"></td>
+                        <td th:text="${e.date}"></td>
+                        <td>
+                            <a th:href="@{/delete/{id}(id=${e.id})}" class="delete-btn">Delete</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
